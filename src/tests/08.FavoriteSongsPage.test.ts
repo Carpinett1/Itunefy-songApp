@@ -98,7 +98,7 @@ describe('8 - Crie a lista de músicas favoritas', () => {
       userEvent.click(checkboxes[0]);
 
       await waitFor(
-        () => screen.getAllByText('Carregando...'),
+        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
         { timeout: 3000 },
       );
 
