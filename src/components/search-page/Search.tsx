@@ -25,13 +25,13 @@ function Search() {
   const resultsList = results
     .map((album) => (
       <li key={ album.collectionId }>
-        <h3>{album.collectionName}</h3>
-        <img src={ album.artworkUrl100 } alt={ album.collectionName } />
+        <p>{album.artistName}</p>
         <Link
           to={ `/album/${album.collectionId}` }
           data-testid={ `link-to-album-${album.collectionId}` }
         >
-          Ver Músicas
+          <img src={ album.artworkUrl100 } alt={ album.collectionName } />
+          <h3>{album.collectionName}</h3>
         </Link>
       </li>));
 

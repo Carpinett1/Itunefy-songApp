@@ -7,6 +7,9 @@ export type AlbumType = {
   artworkUrl100: string;
   releaseDate: string;
   trackCount: number;
+  trackId?: number;
+  trackName?: string;
+  previewUrl?: string;
 };
 
 export type UserType = {
@@ -17,7 +20,7 @@ export type UserType = {
 };
 
 export type SongType = {
-  trackId: number,
-  trackName: string,
-  previewUrl: string,
+  trackId?: number,
+  trackName?: string,
+  previewUrl?: string,
 };
