@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LoadingPage from '../LoadingPage';
-import searchAlbumsAPI from '../../services/searchAlbumsAPI';
-import { AlbumType } from '../../types';
+import LoadingPage from '../components/LoadingPage';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import { AlbumType } from '../types';
 
 function Search() {
   const [searchInput, setSearchInput] = useState('');

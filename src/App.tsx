@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './components/login-page/Login';
-import Search from './components/search-page/Search';
-import Album from './components/album-page/Album';
+import Login from './pages/Login';
+import Search from './pages/Search';
+import Album from './pages/Album';
 
 function App() {
   return (
