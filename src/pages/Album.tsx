@@ -38,9 +38,7 @@ function Album() {
     .map((song) => (
       <li key={ song.trackId }>
         <MusicCard
-          previewUrl={ song.previewUrl }
-          trackName={ song.trackName }
-          trackId={ song.trackId }
+          song={ song }
         />
       </li>
     ));
