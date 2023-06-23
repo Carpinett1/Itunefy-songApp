@@ -7,16 +7,20 @@ import { SongType } from '../types';
 type MusicCardProps = {
   song: SongType,
   favorites?: SongType[],
+  fetchFavoriteList: () => void;
 };
 
-function MusicCard({ song, favorites = undefined }:MusicCardProps) {
+function MusicCard({ song, favorites = undefined, fetchFavoriteList }:MusicCardProps) {
   const { previewUrl, trackName, trackId } = song;
   const [favoriteMusic, setFavoriteMusic] = useState(false);
 
   useEffect(() => {
-    if (favorites) {
-      const favoriteList = favorites.find((elem) => elem.trackId === song.trackId);
-      setFavoriteMusic(!!favoriteList);
+    if (!favorites) setFavoriteMusic(true);
+    else {
+      const isFavorite = favorites.find((elem) => song.trackId === elem.trackId);
+      if (isFavorite) {
+        setFavoriteMusic(true);
+      }
     }
   }, [favorites, song.trackId]);
 
@@ -24,8 +28,10 @@ function MusicCard({ song, favorites = undefined }:MusicCardProps) {
     setFavoriteMusic(!favoriteMusic);
     if (favoriteMusic) {
       removeSong(song);
+      fetchFavoriteList();
     } else {
       addSong(song);
+      fetchFavoriteList();
     }
   };
 
