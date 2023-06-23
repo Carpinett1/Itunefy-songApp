@@ -2,27 +2,37 @@ import { useEffect, useState } from 'react';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import { SongType } from '../types';
 import MusicCardFavorites from '../components/MusicCardFavorites';
+import LoadingPage from '../components/LoadingPage';
 
 function Favorites() {
   const [favorites, setFavorites] = useState<SongType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const updateFavList = async () => {
+    setIsLoading(true);
+    const response = await getFavoriteSongs();
+    setFavorites(response);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const api = async () => {
-      const response = await getFavoriteSongs();
-      setFavorites(response);
-    };
-    api();
-  }, [favorites]);
+    updateFavList();
+  }, []);
 
   const favoritesList = favorites.map((song) => (
     <li key={ song.trackId }>
       <MusicCardFavorites
         song={ song }
-        setFavorites={ setFavorites }
-        favorites={ favorites }
+        updateFavList={ updateFavList }
       />
     </li>
   ));
+
+  if (isLoading) {
+    return (
+      <LoadingPage />
+    );
+  }
 
   return (
     <>

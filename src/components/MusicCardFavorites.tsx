@@ -6,23 +6,17 @@ import { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType,
-  favorites: SongType[],
-  setFavorites: (array:SongType[]) => void
+  updateFavList: () => void
 };
 
-function MusicCardFavorites({ song, favorites, setFavorites }:MusicCardProps) {
+function MusicCardFavorites({ song, updateFavList }:MusicCardProps) {
   const { previewUrl, trackName, trackId } = song;
   const [favoriteMusic, setFavoriteMusic] = useState(true);
 
-  const callback = () => {
-    const newData = favorites.filter((elem) => elem.trackId === song.trackId);
-    setFavorites(newData);
-  };
-
   const handleChange = () => {
-    callback();
     removeSong(song);
     setFavoriteMusic(false);
+    updateFavList();
   };
 
   return (
