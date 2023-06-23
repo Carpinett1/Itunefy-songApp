@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import { SongType } from '../types';
-import MusicCard from '../components/MusicCard';
+import MusicCardFavorites from '../components/MusicCardFavorites';
 
 function Favorites() {
   const [favorites, setFavorites] = useState<SongType[]>([]);
 
-  const fetchFavoriteList = async () => {
-    const response = await getFavoriteSongs();
-    setFavorites(response);
-  };
-
   useEffect(() => {
-    fetchFavoriteList();
-  }, []);
+    const api = async () => {
+      const response = await getFavoriteSongs();
+      setFavorites(response);
+    };
+    api();
+  }, [favorites]);
 
   const favoritesList = favorites.map((song) => (
     <li key={ song.trackId }>
-      <MusicCard song={ song } fetchFavoriteList={ fetchFavoriteList } />
+      <MusicCardFavorites
+        song={ song }
+        setFavorites={ setFavorites }
+        favorites={ favorites }
+      />
     </li>
   ));
 

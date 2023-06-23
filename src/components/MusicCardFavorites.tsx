@@ -1,32 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import checked from '../images/checked_heart.png';
 import empty from '../images/empty_heart.png';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { removeSong } from '../services/favoriteSongsAPI';
 import { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType,
-  favorites?: SongType[],
+  favorites: SongType[],
+  setFavorites: (array:SongType[]) => void
 };
 
-function MusicCard({ song, favorites = undefined }:MusicCardProps) {
+function MusicCardFavorites({ song, favorites, setFavorites }:MusicCardProps) {
   const { previewUrl, trackName, trackId } = song;
-  const [favoriteMusic, setFavoriteMusic] = useState(false);
+  const [favoriteMusic, setFavoriteMusic] = useState(true);
 
-  useEffect(() => {
-    if (favorites) {
-      const favoriteList = favorites.find((elem) => elem.trackId === song.trackId);
-      setFavoriteMusic(!!favoriteList);
-    }
-  }, [favorites, song.trackId]);
+  const callback = () => {
+    const newData = favorites.filter((elem) => elem.trackId === song.trackId);
+    setFavorites(newData);
+  };
 
   const handleChange = () => {
-    setFavoriteMusic(!favoriteMusic);
-    if (favoriteMusic) {
-      removeSong(song);
-    } else {
-      addSong(song);
-    }
+    callback();
+    removeSong(song);
+    setFavoriteMusic(false);
   };
 
   return (
@@ -50,4 +46,4 @@ function MusicCard({ song, favorites = undefined }:MusicCardProps) {
   );
 }
 
-export default MusicCard;
+export default MusicCardFavorites;
