@@ -4,6 +4,7 @@ import LoadingPage from '../components/LoadingPage';
 import getMusics from '../services/musicsAPI';
 import { AlbumType, SongType } from '../types';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 function Album() {
   const initialState = {
@@ -22,13 +23,16 @@ function Album() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [albumData, setAlbumData] = useState<[AlbumType, ...SongType[]]>([initialState]);
+  const [favorites, setFavorites] = useState<SongType[]>([]);
   const { id } = useParams();
   const { artworkUrl100, artistName, collectionName } = albumData[0];
 
   useEffect(() => {
     const api = async () => {
       const response = await getMusics(String(id));
+      const reponseFav = await getFavoriteSongs();
       setAlbumData(response);
+      setFavorites(reponseFav);
       setIsLoading(false);
     };
     api();
@@ -39,6 +43,7 @@ function Album() {
       <li key={ song.trackId }>
         <MusicCard
           song={ song }
+          favorites={ favorites }
         />
       </li>
     ));

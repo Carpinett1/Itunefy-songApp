@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import checked from '../images/checked_heart.png';
 import empty from '../images/empty_heart.png';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
@@ -6,11 +6,19 @@ import { SongType } from '../types';
 
 type MusicCardProps = {
   song: SongType,
+  favorites?: SongType[],
 };
 
-function MusicCard({ song }:MusicCardProps) {
+function MusicCard({ song, favorites = undefined }:MusicCardProps) {
   const { previewUrl, trackName, trackId } = song;
   const [favoriteMusic, setFavoriteMusic] = useState(false);
+
+  useEffect(() => {
+    if (favorites) {
+      const favoriteList = favorites.find((elem) => elem.trackId === song.trackId);
+      setFavoriteMusic(!!favoriteList);
+    }
+  }, [favorites, song.trackId]);
 
   const handleChange = () => {
     setFavoriteMusic(!favoriteMusic);
