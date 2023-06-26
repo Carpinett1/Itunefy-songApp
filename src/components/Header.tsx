@@ -36,6 +36,7 @@ function Header() {
         <NavLink data-testid="link-to-favorites" to="/favorites">Favoritos</NavLink>
         <NavLink data-testid="link-to-profile" to="/profile">Perfil</NavLink>
       </nav>
+      <img src={ user.image } alt="Foto do Usuario" />
       <p data-testid="header-user-name">{user.name}</p>
     </header>
   );
