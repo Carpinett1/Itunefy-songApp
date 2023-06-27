@@ -1,0 +1,141 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: #202020;
+  border-radius: 15px;
+  margin: 20px 20px 20px 10px;
+}
+
+.form-container form {
+  display: flex;
+}
+
+#search-artist-input {
+  padding: 0px 0px 0px 20px;
+  border: 0;
+  border-radius: 10px 0px 0px 10px;
+  height: 70px;
+  width: 300px;
+  font-size: 20px;
+  background-color: #282828;
+  color: white;
+}
+
+#search-artist-input:focus {
+  outline: none;
+}
+
+.form-container form button {
+  padding: 0px;
+  height: 70px;
+  width: 80px ;
+  border: 0;
+  border-radius: 0px 10px 10px 0px;
+  background-color: #181818;
+  color: white;
+}
+
+.form-container form button:disabled {
+  color: 	#404040;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: #202020;
+  border-radius: 15px;
+  margin: 20px 20px 20px 10px;
+}
+
+.result-container h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.result-container hr {
+  width: 300px;
+}
+
+.result-container ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style-type: none;
+  padding: 0px 20px 0px 20px;
+}
+
+.result-container ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10px 40px 10px;
+  background-color: #181818;
+  border-radius: 20px;
+}
+
+.result-container ul li:hover {
+  background-color: #101010;
+  border: 1px solid rgb(255, 255, 255);
+  margin: -1px 9px 39px 9px;
+}
+
+.result-container ul li p {
+  margin: 30px 0px 10px 0px ;
+}
+
+.result-container ul li hr {
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.result-container ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.result-container ul li a h3 {
+  padding: 5px;
+  height: 60px;
+}
+
+.no-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: #202020;
+  border-radius: 15px;
+  margin: 20px 20px 20px 10px;
+  height: 76%;
+}
+
+.no-result-container h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.no-result-container hr {
+  width: 300px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #202020;
+  border-radius: 15px;
+  margin: 20px 20px 20px 10px;
+  height: calc(100vh - 40px);
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LoadingPage from '../components/LoadingPage';
 import { getUser } from '../services/userAPI';
 import { UserType } from '../types';
+import '../styles/profile.css';
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,19 +24,25 @@ function Profile() {
   }, []);
 
   if (isLoading) {
-    return <LoadingPage />;
+    return (
+      <section className="loading-container">
+        <LoadingPage />
+      </section>
+    );
   }
   return (
-    <main>
-      <img src={ userData.image } data-testid="profile-image" alt="Foto do usuario" />
-      <Link to="/profile/edit">Editar perfil</Link>
+    <section className="profile-container">
+      <div className="profile-first-block">
+        <img src={ userData.image } data-testid="profile-image" alt="Foto do usuario" />
+        <Link to="/profile/edit">Editar perfil</Link>
+      </div>
       <h3>Nome</h3>
       <p>{userData.name}</p>
       <h3>Email</h3>
       <p>{userData.email}</p>
       <h3>Descrição</h3>
       <p>{userData.description}</p>
-    </main>
+    </section>
   );
 }
 

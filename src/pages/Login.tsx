@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import LoadingPage from '../components/LoadingPage';
+import '../styles/login.css';
 
 function Login() {
   const [login, setLogin] = useState('');
@@ -21,12 +22,15 @@ function Login() {
 
   if (isLoading) {
     return (
-      <LoadingPage />
+      <section className="loading-container">
+        <LoadingPage />
+      </section>
     );
   }
 
   return (
-    <main>
+    <main className="login-main-container">
+      <h1>TrybeTunes</h1>
       <form onSubmit={ (e) => handleSubmit(e) }>
         <input
           type="text"

@@ -3,6 +3,7 @@ import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import { SongType } from '../types';
 import MusicCardFavorites from '../components/MusicCardFavorites';
 import LoadingPage from '../components/LoadingPage';
+import '../styles/favorites.css';
 
 function Favorites() {
   const [favorites, setFavorites] = useState<SongType[]>([]);
@@ -20,7 +21,7 @@ function Favorites() {
   }, []);
 
   const favoritesList = favorites.map((song) => (
-    <li key={ song.trackId }>
+    <li className="favorites-songs-container" key={ song.trackId }>
       <MusicCardFavorites
         song={ song }
         updateFavList={ updateFavList }
@@ -30,17 +31,20 @@ function Favorites() {
 
   if (isLoading) {
     return (
-      <LoadingPage />
+      <section className="loading-container">
+        <LoadingPage />
+      </section>
     );
   }
 
   return (
-    <>
+    <section className="favorites-container">
       <h1>Meus Favoritos</h1>
+      <hr />
       <ul>
         {favoritesList}
       </ul>
-    </>
+    </section>
   );
 }
 

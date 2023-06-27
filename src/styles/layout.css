@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+}
+
+.page {
+  display: flex;
+}
+
+.main-container {
+  margin-left: 17%;
+  width: 85%;
+}

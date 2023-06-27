@@ -32,7 +32,12 @@ function MusicCard({ song, favorites = undefined }:MusicCardProps) {
   return (
     <>
       <p>{trackName}</p>
-      <audio data-testid="audio-component" src={ previewUrl } controls>
+      <audio
+        data-testid="audio-component"
+        src={ previewUrl }
+        controls
+        controlsList="nodownload noplaybackrate"
+      >
         <track kind="captions" />
       </audio>
       <label data-testid={ `checkbox-music-${trackId}` } htmlFor={ String(trackId) }>

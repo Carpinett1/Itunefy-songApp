@@ -5,6 +5,7 @@ import getMusics from '../services/musicsAPI';
 import { AlbumType, SongType } from '../types';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import '../styles/album.css';
 
 function Album() {
   const initialState = {
@@ -40,7 +41,7 @@ function Album() {
 
   const musicCards = albumData.slice(1)
     .map((song) => (
-      <li key={ song.trackId }>
+      <li key={ song.trackId } className="album-music-card-container">
         <MusicCard
           song={ song }
           favorites={ favorites }
@@ -48,25 +49,32 @@ function Album() {
       </li>
     ));
 
+  if (isLoading) {
+    return (
+      <section className="loading-container">
+        <LoadingPage />
+      </section>
+    );
+  }
+
   return (
-    <main>
-      { isLoading && <LoadingPage /> }
-      { !isLoading
-        && (
-          <>
-            <div>
-              <img src={ artworkUrl100 } alt="Album Logo" />
-              <h2 data-testid="artist-name">{artistName}</h2>
-              <h3 data-testid="album-name">{collectionName}</h3>
-            </div>
-            <div>
-              <ul>
-                {musicCards}
-              </ul>
-            </div>
-          </>
-        )}
-    </main>
+    <section className="album-page-container">
+      <section className="album-data-container">
+        <img src={ artworkUrl100 } alt="Album Logo" />
+        <div className="album-title-container">
+          <h2 data-testid="album-name">{collectionName}</h2>
+          <div className="subdata-info">
+            <h3 data-testid="artist-name">{artistName}</h3>
+            <h3>{`${albumData[0].trackCount} Músicas`}</h3>
+          </div>
+        </div>
+      </section>
+      <section className="music-card-container">
+        <ul>
+          {musicCards}
+        </ul>
+      </section>
+    </section>
   );
 }
 
