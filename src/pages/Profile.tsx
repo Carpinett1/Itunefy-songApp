@@ -4,6 +4,7 @@ import LoadingPage from '../components/LoadingPage';
 import { getUser } from '../services/userAPI';
 import { UserType } from '../types';
 import '../styles/profile.css';
+import profile from '../images/profile.svg';
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +34,11 @@ function Profile() {
   return (
     <section className="profile-container">
       <div className="profile-first-block">
-        <img src={ userData.image } data-testid="profile-image" alt="Foto do usuario" />
+        <img
+          src={ userData.image ? userData.image : profile }
+          data-testid="profile-image"
+          alt="Foto do usuario"
+        />
         <Link to="/profile/edit">Editar perfil</Link>
       </div>
       <h3>Nome</h3>

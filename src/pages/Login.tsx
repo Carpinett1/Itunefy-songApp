@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import LoadingPage from '../components/LoadingPage';
+import logo from '../images/logo.svg';
 import '../styles/login.css';
 
 function Login() {
@@ -30,7 +31,10 @@ function Login() {
 
   return (
     <main className="login-main-container">
-      <h1>TrybeTunes</h1>
+      <h1>
+        <img src={ logo } alt="logo" />
+        itunefy
+      </h1>
       <form onSubmit={ (e) => handleSubmit(e) }>
         <input
           type="text"

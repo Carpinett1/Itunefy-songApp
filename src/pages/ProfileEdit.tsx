@@ -4,6 +4,7 @@ import LoadingPage from '../components/LoadingPage';
 import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
 import '../styles/profileEdit.css';
+import profile from '../images/profile.svg';
 
 function ProfileEdit() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +59,7 @@ function ProfileEdit() {
     <section className="edit-form-container">
       <form onSubmit={ handleSubmit }>
         <div className="edit-form-first-block">
-          <img src={ userData.image } alt="Foto do usuário" />
+          <img src={ userData.image ? userData.image : profile } alt="Foto do usuário" />
           <input
             type="text"
             name="image"
