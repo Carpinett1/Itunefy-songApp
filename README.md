@@ -1,6 +1,6 @@
 # Itunefy App
 
-## [Link do Projeto](www.itunefy-song-app.vercel.app)
+## [Link do Projeto](https://itunefy.vercel.app/)
 
 ## Descrição
 
