@@ -13,5 +13,5 @@ Este repositório está em construção. Aqui você encontrará [breve resumo do
 
 ## Instruções de Instalação
 
-1) Clone o repositorio no seu computador ```git@github.com:Carpinett1/Itunefy-songApp.git```
+1) Clone o repositorio no seu computador `git@github.com:Carpinett1/Itunefy-songApp.git`
 2) 
